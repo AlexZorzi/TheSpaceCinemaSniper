@@ -1,0 +1,147 @@
+
+# TheSpace Cinema Sniper
+Snipe any seats as soon as they come out
+
+# Innerworkings
+## Endpoints
+- Main Url
+
+        https://www.thespacecinema.it
+
+- Login
+        
+       https://www.thespacecinema.it/security/loginajax
+
+- Search
+
+      https://www.thespacecinema.it/data/searchquery/
+
+## Cookies
+
+    
+    ASP.NET_SessionId   3ymykyodjiowlxilfcbxlakn
+    
+    -- Extra After Login
+
+    UserSessionId 6bbf16b9-f7e9-47c7-90d0-f5abe1a38fc1
+    .ASPXAUTH   14FB3FCFEDCFD11EA95A120954D50EFDA3D141903DD32879FA34855A25BCA893EEDA55F8EE7B19B0D656AD3233460E63E062944FD68A5639EDE59768CA9ABD0E7ADB2BB6B7AC625E03766DE7A6C2E3C971DD390138E5EFF0D90CDB0125CBAC9BF6F3B9452F7280A0EDD2284CDDC5FBA65C01131CE9A9ADBE12A7F4301810C12035696C89078DBBF1BFF67B64AE63CA17BCDB51CBFEB8C66CF81119FC39E174BC1B93C91AD79139C241E280395D9A2337AD1D3537E59704EF7976C571F38B06231DA8324C
+
+`.ASPXAUTH` is the only one needed for Login
+
+## Login
+
+endpoint `/security/loginajax`
+
+payload
+```
+__RequestVerificationToken: -Y4YIwynPUEILnVp98ibjFqwZpXErw7hhXWEamvuEkv0e2Uh8APQi8ewR1BjZCYyEpz4afFo0QriXIUNQ1aqU2V6t8I1
+type: email
+email: email@gmail.com
+password: Password1
+```
+response
+```
+{
+  "agreements": {
+        ...
+  },
+  "showAdultLayer": false,
+  "data": {
+    "logged": true,
+    "active": true,
+    "id": "extranet_it\\email_a45da91f401d4e3b802425f935623a34",
+    "sId": "18FD15BF2BC7D344A19947002DF91B58",
+    "loyaltyProviderMemberId": "email_a45da91f401d4e3b802425f935623a34",
+    "status": "email",
+    "name": "name",
+    "surname": "surname",
+    "email": "email@gmail.com",
+    "preffered_cinema": 23,
+    "SelectedCinemaId": "23",
+        ... 
+  },
+  "status": true,
+  "error": 0,
+  "message": null,
+  "code": null
+}
+```
+
+## Film List Given A Cinema
+
+endpoint `/data/filmswithshowings/{23}`
+
+payload
+```
+23 
+```
+response
+```
+{
+  films [
+    {
+      id : 8329,
+      image_poster : "https://cdn1.thespacecinema.it/-/media/tsc/2023/03/john-wick-4/coverig_john_wick_4_top.jpg?h=472",
+      synopsis_short : "L'assassino in nero numero uno al mondo trova una via per sconfiggere la Grand Tavola. Prima di guadagnare la libertà però, John WIck dovrà affrontare un nuovo nemico che ha alleanze in tutto il mondo e i mezzi per tramutare i vecchi amici in nuovi nemici.",
+      title : "John Wick 4",
+      video : "https://cdn1.thespacecinema.it/-/media/tsc/2023/03/john-wick-4/new/trailer_john-wick-4.mp4",
+      virtual_reality : false,
+      showings : [
+          {
+            date_time : "2023-03-30",
+            date_day : "mercoledì",
+            date_long : "mercoledì 29 marzo",
+            times : [
+                {
+                  date : "2023-03-29T17:20:00",
+                  time : "17:20",
+                  screen_number : "7", // sala
+                  screen_type : "2D",
+                  link : "/prenotare-il-biglietto/summary/{screenId}/8329/23/14310/{sessionDate}/{sessionTime}",
+                  // /prenotare-il-biglietto/summary/6 <-- screen_number /8329/23/14903/  2023-03-30 <-- date_time /18-10  <-- time :<->-
+                },
+            ...
+            ],
+          },
+      ],
+    },
+    ...
+  ],
+}
+```
+
+## Cinema IDs
+endpoint `embedded in homepage`
+```
+{
+   "cinemas":{
+      "whatsOnCinemas":[
+         {
+            "CinemaName":"Beinasco",
+            "CinemaId":"28",
+            "CinemaSlug":"beinasco",
+            "Lat":"45.0223361",
+            "Lon":"7.5899646",
+            "CinemaShortName":null
+         },
+         {
+            "CinemaName":"Belpasso",
+            "CinemaId":"32",
+            "CinemaSlug":"belpasso",
+            "Lat":"37.5426654",
+            "Lon":"14.9543871999999",
+            "CinemaShortName":null
+         },
+         {
+            "CinemaName":"Bologna",
+            "CinemaId":"3",
+            "CinemaSlug":"bologna",
+            "Lat":"44.51123",
+            "Lon":"11.370569",
+            "CinemaShortName":null
+         },
+         ...
+      ]
+   }
+}
+```
