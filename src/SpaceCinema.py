@@ -8,13 +8,12 @@ class SpaceCinema:
     BASE = "https://www.thespacecinema.it"
     LOGIN = BASE + "/security/loginajax"
     FILMBYCINEMA = BASE + "/data/filmswithshowings/"
-
-    cinemas = {}
-    selected_cinema = ""
-    films = []
+    SEATINGDATA = BASE + "/data/SeatingData"
 
     def __init__(self, username, password, debug=False):
         self.SESSION = requests.session()
+        self.cinemas = {}
+        self.films = []
         self.username = username
         self.password = password
         self.DEBUG = debug
@@ -41,3 +40,9 @@ class SpaceCinema:
         data = self.SESSION.get(self.FILMBYCINEMA + cinema_id).json()
         for film_data in data["films"]:
             self.films.append(Film(film_data))
+
+    def getSeatingData(self, Time, CinemaID):
+        link = Time.getLink().split("/")
+        payload = {"cinemaId" : CinemaID, "filmId" : link[4], "filmSessionId" : link[6], "userSessionId" : self.SESSION.cookies.get('UserSessionId')}
+        data = self.SESSION.post(self.SEATINGDATA, data=payload, cookies={'cf_clearance': 'uKa.paKuQwd3pC.X5vkAr7roZI1zWFXwNM2k_jBAE0w-1680216250-0-250'})
+        print()

@@ -145,3 +145,85 @@ endpoint `embedded in homepage`
    }
 }
 ```
+
+## Seating Data
+endpoint `/data/SeatingData`
+
+payload
+```
+cinemaId: 23
+filmId: 8329
+filmSessionId: 14992
+userSessionId: e281c4f9-c8d5-448a-855f-6596274c3070
+```
+response
+```
+{
+  "pricing_data" : [
+      {
+        "type_id": "1RidWeb",
+        "type_label": "Biglietto online",
+        "area_pricing": [
+          {
+            "area_id": "standard",
+            "area_label": "Standard",
+            "price": "9.2",
+            "code": "0144",
+            "naming_code": "A000000425",
+          },
+          {
+            "area_id": "vip",
+            "area_label": "VIP",
+            "has_info": false,
+            "price": "10.7",
+            "code": "0145",
+            "naming_code": "A000000426",
+          }
+          ...
+        ],
+        ...
+      }
+  ]
+  "seating_data" : {
+      "rows" : [
+            {
+                "row_label" : "A", // Fila
+                "columns" : [
+                    {
+                       "area_id" : "standard" // "standard" or "vip" or "special" (weelchair)
+                       "id" : "0000000001_001_007_000",
+                       "name" : "A-1",
+                       "status" : 0 // 0 available, 2 unavailable
+                    },
+                    ...
+                ]
+            },             
+      ]
+  }
+  "session_data" : {
+       "cinema_film_id" : "HO00002018",
+       "endtime_formatted" : "18:30",
+       "session_id" : "14992",
+  }
+}
+```
+
+## CheckSelection
+endpoint `/data/CheckSelection`
+
+payload (query)
+```
+cinemaId: 23
+filmId: 8329
+filmSessionId: 14992
+userSessionId: e281c4f9-c8d5-448a-855f-6596274c3070
+```
+payload (form)
+```
+Tickets[0][Code]: 0144
+Tickets[0][Count]: 2
+SeatIds[]: 0000000001_001_004_008
+SeatIds[]: 0000000001_001_004_007
+```
+
+

@@ -1,4 +1,5 @@
 
+
 class Times:
 
     def __init__(self, json, date_time):
@@ -15,3 +16,4 @@ class Times:
         link_sessionDate = screenid_link.replace("{sessionDate}", self.date_time)
         link_final = link_sessionDate.replace("{sessionTime}", adapted_time)
         return link_final
+
