@@ -2,9 +2,10 @@ from Showing import Showing
 
 
 class Film:
-    showings = []
+
 
     def __init__(self, json):
+        self.showings = []
         self.id = json["id"]
         self.image_poster = json["image_poster"]
         self.synopsis_short = json["synopsis_short"]
