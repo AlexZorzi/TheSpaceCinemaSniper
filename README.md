@@ -162,6 +162,8 @@ endpoint `embedded in homepage`
 ## Seating Data
 endpoint `/data/SeatingData`
 
+important note `{"x-requested-with": "XMLHttpRequest"}` is needed for this endpoint to work
+
 payload
 ```
 cinemaId: 23
