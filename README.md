@@ -4,6 +4,15 @@
 # TheSpace Cinema Sniper
 Snipe any seats as soon as they come out
 
+# Todos
+- Full Statefull Objects
+- Flow up to Payscreen
+- Work with coupons
+- Work in snipe mode 
+- better cli UI
+- web ui (?)
+- obj works directly with json (?)
+
 # Innerworkings
 
 ## How seats are choosen? (WIP)
