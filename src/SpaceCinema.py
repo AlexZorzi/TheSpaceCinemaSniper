@@ -2,6 +2,7 @@ import re
 import json
 import requests
 from Film import Film
+from src.Seating import Seating
 
 
 class SpaceCinema:
@@ -43,6 +44,6 @@ class SpaceCinema:
 
     def getSeatingData(self, Time, CinemaID):
         link = Time.getLink().split("/")
-        payload = {"cinemaId" : CinemaID, "filmId" : link[4], "filmSessionId" : link[6], "userSessionId" : self.SESSION.cookies.get('UserSessionId')}
-        data = self.SESSION.post(self.SEATINGDATA, data=payload, cookies={'cf_clearance': 'uKa.paKuQwd3pC.X5vkAr7roZI1zWFXwNM2k_jBAE0w-1680216250-0-250'})
-        print()
+        link2 = self.SEATINGDATA+"?cinemaId="+CinemaID+"&filmId="+link[4]+"&filmSessionId="+link[6]+"&userSessionId="+self.SESSION.cookies.get('UserSessionId')
+        headers = {"x-requested-with": "XMLHttpRequest"} # Important for it to work, they do active control on this header presence
+        return Seating(self.SESSION.post(link2, headers=headers).json())
