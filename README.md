@@ -1,8 +1,21 @@
+![logo](/docs/logo4.png)
+
 
 # TheSpace Cinema Sniper
 Snipe any seats as soon as they come out
 
 # Innerworkings
+
+## How seats are choosen? (WIP)
+We figure out the approximate center of all the seats (pink) then we create a list of every combination of subgroups we can make with the selected numbers of seats (3 in this case).
+Then we pick the central seat and using the distance from two points formula we figure out the most suitable seats near the center.
+![seatings](/docs/rankseats.png)
+
+## What if the seats number is not odd?
+We simply create an immaginary point in the middle of the two center seats and then calculate distance from there.
+![even](/docs/even.png)
+
+
 ## Endpoints
 - Main Url
 
@@ -193,7 +206,7 @@ response
                        "area_id" : "standard" // "standard" or "vip" or "special" (weelchair)
                        "id" : "0000000001_001_007_000",
                        "name" : "A-1",
-                       "status" : 0 // 0 available, 2 unavailable
+                       "status" : 0 // 0 available, 2 or 1 or 7 unavailable 
                     },
                     ...
                 ]
