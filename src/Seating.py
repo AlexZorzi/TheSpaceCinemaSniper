@@ -30,8 +30,7 @@ class Seating:
                 elif column["area_id"] == "standard":
                     print(Seating.OKBLUE, end=" ")
                 print(column["name"], end=Seating.ENDC+" ")
-        print()
-    print()
+            print()
 
     def selectBestSeatsByN(self, nposti):
         len_rows = len(self.json["seating_data"])
