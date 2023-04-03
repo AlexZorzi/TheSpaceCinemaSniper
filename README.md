@@ -10,7 +10,30 @@ https://user-images.githubusercontent.com/47613715/229616897-1dd14fd6-dcbc-4f10-
 
 
 # TheSpace Cinema Sniper
-Snipe any seats as soon as they come out
+- Snipe any seats as soon as they come out
+- Unlock the soft limit of max 10 bookable seats 
+- Dont fight with the buggy website Ui to use the coupons
+
+# Contacts
+Telegram [Alz_8bit](https://t.me/alz_8bit)
+
+Mail [info@alexzorzi.it](mailto:info@alexzorzi.it)
+
+LinkedIn [link](https://www.linkedin.com/in/alex-zorzi-a03418240/)
+
+# Disclaimer
+The developer of this application does not take any responsibility on the use and misuse of the software provided.
+This software was developed as a concept and its only intended for research porpuses
+
+# How to use
+  ```
+  $ git clone https://github.com/AlexZorzi/TheSpaceCinemaSniper
+  $ cd TheSpaceCinemaSniper
+  $ pip install -r requirements.txt
+  $ nano credentials.json.example                       *edit credentials.json.example*
+  $ mv credentials.json.example credentials.json
+  $ python src/main.py     
+  ```
 
 # Todos
 - Full Statefull Objects
