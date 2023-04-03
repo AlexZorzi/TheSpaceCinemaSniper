@@ -1,5 +1,7 @@
 ![logo](/docs/logo4.png)
 
+## Demo
+![](/docs/demo.mp4)
 
 # TheSpace Cinema Sniper
 Snipe any seats as soon as they come out
@@ -235,12 +237,18 @@ response
 ## CheckSelection
 endpoint `/data/CheckSelection`
 
+cookie
+```
+userSessionId from e281c4f9-c8d5-448a-855f-6596274c3070 to e281c4f9-c8d5-448a-855f-6596274c3070|cinemaid|filmId|filmSessionId|date_time
+                                                           e281c4f9-c8d5-448a-855f-6596274c3070|23|8132|15093|2023-03-30
+```
+
 payload (query)
 ```
 cinemaId: 23
 filmId: 8329
 filmSessionId: 14992
-userSessionId: e281c4f9-c8d5-448a-855f-6596274c3070
+userSessionId: e281c4f9-c8d5-448a-855f-6596274c3070 
 ```
 payload (form)
 ```
@@ -248,6 +256,16 @@ Tickets[0][Code]: 0144
 Tickets[0][Count]: 2
 SeatIds[]: 0000000001_001_004_008
 SeatIds[]: 0000000001_001_004_007
+```
+converted to json form (SpaceDevs wtf ?!?!?!)
+```
+}
+    "Tickets[0][Count]": len(seats),
+    "Tickets[0][Code]" :"0144", # 0144 standars seats
+    "SeatIds": [
+                seat["id"] for seat in seats
+            ],
+}
 ```
 
 
