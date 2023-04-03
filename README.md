@@ -1,4 +1,7 @@
-![logo](/docs/logo4.png)
+<p align="center">
+        <img src="https://user-images.githubusercontent.com/47613715/229617574-d0d8f850-b8ca-4a51-b4cb-67f5d5dd216d.png" width="300px">
+
+</p>
 
 ## Demo
 
