@@ -1,7 +1,10 @@
 ![logo](/docs/logo4.png)
 
 ## Demo
-![](/docs/demo.mp4)
+
+
+https://user-images.githubusercontent.com/47613715/229616897-1dd14fd6-dcbc-4f10-b516-8131161a3759.mp4
+
 
 # TheSpace Cinema Sniper
 Snipe any seats as soon as they come out
