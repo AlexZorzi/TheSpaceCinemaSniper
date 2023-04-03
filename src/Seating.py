@@ -69,5 +69,4 @@ class Seating:
                     bestSeats["seats"] = selected_data
                     bestSeats["distance"] = distance
 
-        for seat in bestSeats["seats"]:
-            print(seat["name"])
+        return bestSeats["seats"]
