@@ -10,6 +10,7 @@ class SpaceCinema:
     LOGIN = BASE + "/security/loginajax"
     FILMBYCINEMA = BASE + "/data/filmswithshowings/"
     SEATINGDATA = BASE + "/data/SeatingData"
+    CHECKOUT = BASE + "/data/CheckSelection"
 
     def __init__(self, username, password, debug=False):
         self.SESSION = requests.session()
@@ -47,3 +48,27 @@ class SpaceCinema:
         link2 = self.SEATINGDATA+"?cinemaId="+CinemaID+"&filmId="+link[4]+"&filmSessionId="+link[6]+"&userSessionId="+self.SESSION.cookies.get('UserSessionId')
         headers = {"x-requested-with": "XMLHttpRequest"} # Important for it to work, they do active control on this header presence
         return Seating(self.SESSION.post(link2, headers=headers).json())
+
+    def getFilmidBySeating(self, Time):
+        return Time.getLink().split("/")[4]
+
+    def getFilmSessionidBySeating(self, Time):
+        return Time.getLink().split("/")[6]
+
+    def checkoutSeats(self, Time, seats, CinemaID, ):
+        link = Time.getLink().split("/")
+        UserSessionId = self.SESSION.cookies.get('UserSessionId')
+        link2 = self.CHECKOUT + "?cinemaId=" + CinemaID + "&filmId=" + link[4] + "&filmSessionId=" + link[
+            6] + "&userSessionId=" + UserSessionId
+        headers = {"x-requested-with": "XMLHttpRequest"}  # Important for it to work, they do active control on this header presence
+        data = {
+            "Tickets[0][Count]": len(seats),
+            "Tickets[0][Code]" :"0144", # 0144 standars seats
+            "SeatIds": [
+                seat["id"] for seat in seats
+            ],
+       }
+        self.SESSION.cookies.clear(name="UserSessionId", domain="www.thespacecinema.it", path="/")
+        self.SESSION.cookies.set("UserSessionId", UserSessionId+"|"+CinemaID+"|"+link[4]+"|"+link[6]+"|"+Time.date_time)
+        result = self.SESSION.post(link2, headers=headers, data=data).json()
+        return result
