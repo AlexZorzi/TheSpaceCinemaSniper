@@ -1,0 +1,5 @@
+*.xml
+credentials.json
+.idea
+venv
+*.log
